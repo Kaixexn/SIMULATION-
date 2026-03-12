@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Group 1 — Multimedia & Effective Communication</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #faf8f3;
+    --white: #ffffff;
+    --ink: #1a1a2e;
+    --ink2: #4a4a6a;
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --blue-mid: #bfdbfe;
+    --teal: #0d9488;
+    --teal-light: #f0fdfa;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --rose: #e11d48;
+    --rose-light: #fff1f2;
+    --violet: #7c3aed;
+    --violet-light: #f5f3ff;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --border: #e5e7eb;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+    --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,243,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px;
+  }
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 18px; font-weight: 800;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .nav-logo .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue);
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink2);
+    font-size: 13px; font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--blue); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 130px 40px 80px;
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+  }
+
+  .hero-left { animation: slideUp .7s ease both; }
+  .hero-right { animation: slideUp .7s .15s ease both; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .group-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-light); border: 1px solid var(--blue-mid);
+    color: var(--blue); border-radius: 20px;
+    padding: 5px 14px; font-size: 12px; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .group-pill .pulse {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--blue); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 800; line-height: 1.1;
+    margin-bottom: 20px; color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--blue);
+    font-weight: 400;
+  }
+
+  .hero-desc {
+    font-size: 16px; color: var(--ink2);
+    line-height: 1.75; margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--blue); color: #fff;
+    border: none; border-radius: 12px;
+    padding: 14px 28px; font-size: 15px; font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all .25s; box-shadow: 0 4px 14px rgba(37,99,235,.3);
+  }
+  .btn-primary:hover {
+    background: #1d4ed8; transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,99,235,.35);
+  }
+  .btn-primary .arrow { transition: transform .2s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+
+  .btn-secondary {
+    background: var(--white); color: var(--ink);
+    border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 14px 24px; font-size: 15px; font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all .25s; box-shadow: var(--shadow-sm);
+  }
+  .btn-secondary:hover {
+    border-color: var(--blue); color: var(--blue);
+    transform: translateY(-2px); box-shadow: var(--shadow);
+  }
+
+  /* Hero card */
+  .hero-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px; padding: 32px;
+    box-shadow: var(--shadow-lg);
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--teal), var(--violet));
+  }
+  .hcard-label {
+    font-size: 11px; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink2); margin-bottom: 14px;
+  }
+  .hcard-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .hcard-sub { font-size: 13px; color: var(--ink2); margin-bottom: 22px; }
+
+  .hcard-stats {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+  }
+  .hstat {
+    background: var(--cream); border-radius: 10px;
+    padding: 12px 10px; text-align: center;
+  }
+  .hstat .hnum {
+    font-family: 'Fraunces', serif;
+    font-size: 26px; font-weight: 700; color: var(--blue);
+  }
+  .hstat .hkey { font-size: 11px; color: var(--ink2); margin-top: 2px; }
+
+  .hcard-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  .hcard-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .htag {
+    background: var(--blue-light); color: var(--blue);
+    border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 500;
+  }
+  .htag.teal { background: var(--teal-light); color: var(--teal); }
+  .htag.violet { background: var(--violet-light); color: var(--violet); }
+
+  /* ── INTRO SECTION ── */
+  .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--blue);
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 40px; height: 1px;
+    background: var(--blue-mid);
+  }
+
+  .section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800; margin-bottom: 16px; color: var(--ink);
+    line-height: 1.15;
+  }
+
+  .intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 48px; align-items: start; margin-top: 48px;
+  }
+
+  .intro-text p {
+    font-size: 15.5px; color: var(--ink2);
+    line-height: 1.8; margin-bottom: 16px;
+  }
+  .intro-text p strong { color: var(--ink); }
+
+  .objectives-list { list-style: none; margin-top: 8px; }
+  .objectives-list li {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+    font-size: 14.5px; color: var(--ink2); line-height: 1.6;
+  }
+  .objectives-list li:last-child { border-bottom: none; }
+  .obj-icon {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--blue-light); color: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0; margin-top: 1px;
+  }
+
+  .intro-right {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 20px; padding: 28px; box-shadow: var(--shadow);
+  }
+  .intro-right h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px; font-weight: 700;
+    margin-bottom: 16px; color: var(--ink);
+  }
+  .what-inside-list { list-style: none; }
+  .wi-item {
+    display: flex; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .wi-item:last-child { border-bottom: none; }
+  .wi-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .wi-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .wi-desc { font-size: 12px; color: var(--ink2); line-height: 1.5; }
+
+  /* ── TEAM SECTION ── */
+  .team-section { padding: 80px 40px; background: var(--white); }
+  .team-inner { max-width: 1100px; margin: 0 auto; }
+
+  .leader-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+    border: 1.5px solid var(--blue-mid);
+    border-radius: 24px; padding: 36px;
+    display: flex; gap: 32px; align-items: center;
+    margin-bottom: 40px; box-shadow: var(--shadow);
+    animation: slideUp .6s ease both;
+  }
+  .leader-avatar {
+    width: 88px; height: 88px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--violet));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px; flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(37,99,235,.25);
+  }
+  .leader-info { flex: 1; }
+  .leader-role {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 6px;
+  }
+  .leader-name {
+    font-family: 'Fraunces', serif;
+    font-size: 32px; font-weight: 800; color: var(--ink); margin-bottom: 8px;
+  }
+  .leader-desc { font-size: 14px; color: var(--ink2); line-height: 1.6; max-width: 480px; }
+  .leader-badge {
+    background: var(--blue); color: #fff;
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 12px; font-weight: 600;
+    display: inline-block; margin-top: 12px;
+  }
+
+  .members-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--ink2);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .members-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .members-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 14px;
+  }
+
+  .member-card {
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 16px; padding: 22px 18px; text-align: center;
+    transition: all .25s; cursor: default;
+    animation: slideUp .5s ease both;
+  }
+  .member-card:nth-child(1) { animation-delay: .1s; }
+  .member-card:nth-child(2) { animation-delay: .15s; }
+  .member-card:nth-child(3) { animation-delay: .2s; }
+  .member-card:nth-child(4) { animation-delay: .25s; }
+  .member-card:nth-child(5) { animation-delay: .3s; }
+  .member-card:nth-child(6) { animation-delay: .35s; }
+
+  .member-card:hover {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: var(--shadow-lg);
+    background: var(--white);
+  }
+
+  .member-avatar {
+    width: 60px; height: 60px; border-radius: 50%;
+    margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 700;
+    color: #fff;
+  }
+  .member-name {
+    font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px;
+  }
+  .member-role {
+    font-size: 11px; color: var(--ink2); line-height: 1.4;
+  }
+  .member-role-tag {
+    display: inline-block; margin-top: 8px;
+    border-radius: 5px; padding: 3px 10px;
+    font-size: 10px; font-weight: 600; letter-spacing: .04em;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 100px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #f0fdfa 100%);
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -80px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(37,99,235,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner { position: relative; max-width: 600px; margin: 0 auto; }
+  .cta-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(37,99,235,.1); border: 1px solid rgba(37,99,235,.2);
+    color: var(--blue); border-radius: 20px;
+    padding: 5px 14px; font-size: 12px; font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .cta-section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(30px, 4vw, 48px); font-weight: 800;
+    color: var(--ink); margin-bottom: 16px; line-height: 1.15;
+  }
+  .cta-section p {
+    font-size: 16px; color: var(--ink2);
+    line-height: 1.7; margin-bottom: 40px;
+  }
+  .cta-btn {
+    background: var(--blue); color: #fff;
+    border: none; border-radius: 14px;
+    padding: 18px 40px; font-size: 17px; font-weight: 700;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: all .25s;
+    box-shadow: 0 8px 28px rgba(37,99,235,.35);
+  }
+  .cta-btn:hover {
+    background: #1d4ed8; transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(37,99,235,.4);
+  }
+  .cta-btn .arrow { font-size: 20px; transition: transform .2s; }
+  .cta-btn:hover .arrow { transform: translateX(5px); }
+
+  .cta-note { margin-top: 16px; font-size: 12px; color: var(--ink2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,.5);
+    padding: 30px 40px; text-align: center; font-size: 13px;
+  }
+  footer strong { color: rgba(255,255,255,.85); }
+
+  /* ── DECORATIVE FLOATS ── */
+  .float-shape {
+    position: absolute; pointer-events: none; border-radius: 50%;
+    opacity: .07; animation: float 8s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    max-width: 1100px; margin: 0 auto;
+    border: none; border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 20px 50px; gap: 32px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 28px; }
+    .leader-card { flex-direction: column; text-align: center; padding: 24px; }
+    .members-grid { grid-template-columns: repeat(2,1fr); }
+    .section { padding: 50px 20px; }
+    .team-section { padding: 50px 20px; }
+    .cta-section { padding: 60px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="dot"></div>
+    Group 1 · CommLab
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#team">Our Team</a>
+    <a href="#launch">Launch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="position:relative">
+  <div class="float-shape" style="width:320px;height:320px;background:var(--blue);top:-60px;right:-80px;animation-delay:0s"></div>
+  <div class="float-shape" style="width:200px;height:200px;background:var(--violet);bottom:0;left:-60px;animation-delay:3s"></div>
+
+  <div class="hero">
+    <div class="hero-left">
+      <div class="group-pill">
+        <div class="pulse"></div>
+        Group 1 · S.Y. 2025–2026
+      </div>
+      <h1>Multimedia &<br><em>Effective</em><br>Communication</h1>
+      <p class="hero-desc">
+        Welcome to our tutorial simulation project! We created an interactive learning experience that teaches the fundamentals of multimedia and communication theory — through hands-on simulations, branching scenarios, and guided lessons.
+      </p>
+      <div class="hero-actions">
+        <a href="commlab-v2.html" class="btn-primary">
+          Launch CommLab <span class="arrow">→</span>
+        </a>
+        <a href="#team" class="btn-secondary">
+          Meet the Team
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hcard-label">Project Overview</div>
+        <div class="hcard-title">CommLab v2</div>
+        <div class="hcard-sub">Interactive Tutorial & Simulation Platform</div>
+        <div class="hcard-stats">
+          <div class="hstat"><div class="hnum">9</div><div class="hkey">Lessons</div></div>
+          <div class="hstat"><div class="hnum">5</div><div class="hkey">Simulations</div></div>
+          <div class="hstat"><div class="hnum">20+</div><div class="hkey">Key Terms</div></div>
+        </div>
+        <hr class="hcard-divider">
+        <div class="hcard-tags">
+          <span class="htag">📖 Tutorial</span>
+          <span class="htag teal">⚗️ Simulation</span>
+          <span class="htag violet">📊 Dashboard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-label">About the Project</div>
+  <h2>Why We Built This</h2>
+
+  <div class="intro-grid">
+    <div class="intro-text">
+      <p>
+        Communication is at the heart of everything we do — from a simple text message to a full multimedia campaign. Yet most of us never formally learn <strong>why some messages succeed and others fail.</strong>
+      </p>
+      <p>
+        Our group created <strong>CommLab</strong> as an interactive way to explore the science and art behind effective communication. Instead of just reading about communication models, you get to <strong>run live simulations, make scenario choices, and test your knowledge</strong> — all in one place.
+      </p>
+      <p>
+        This project covers everything from foundational communication theory to practical multimedia strategy — designed specifically for high school learners.
+      </p>
+
+      <ul class="objectives-list">
+        <li>
+          <div class="obj-icon">🎯</div>
+          <span>Help learners understand key communication models and how messages travel from sender to receiver</span>
+        </li>
+        <li>
+          <div class="obj-icon">⚗️</div>
+          <span>Provide interactive simulations that make abstract theory visible and hands-on</span>
+        </li>
+        <li>
+          <div class="obj-icon">🌍</div>
+          <span>Explore how cultural differences affect communication and multimedia interpretation</span>
+        </li>
+        <li>
+          <div class="obj-icon">🏆</div>
+          <span>Make learning engaging through gamification — XP, badges, and a skill tree</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="intro-right">
+      <h3>What's Inside CommLab?</h3>
+      <ul class="what-inside-list">
+        <li class="wi-item">
+          <div class="wi-icon" style="background:#eff6ff">📖</div>
+          <div>
+            <div class="wi-title">9 Tutorial Lessons</div>
+            <div class="wi-desc">From communication basics to visual design and language tone — with branching scenario choices</div>
+          </div>
+        </li>
+        <li class="wi-item">
+          <div class="wi-icon" style="background:#f0fdfa">⚗️</div>
+          <div>
+            <div class="wi-title">5 Live Simulations</div>
+            <div class="wi-desc">Noise channel, broken telephone chain, media budget allocator, cultural lens filter, feedback loop</div>
+          </div>
+        </li>
+        <li class="wi-item">
+          <div class="wi-icon" style="background:#f5f3ff">📚</div>
+          <div>
+            <div class="wi-title">Searchable Glossary</div>
+            <div class="wi-desc">22 key terms with category filters — your quick reference for every concept</div>
+          </div>
+        </li>
+        <li class="wi-item">
+          <div class="wi-icon" style="background:#fffbeb">📊</div>
+          <div>
+            <div class="wi-title">Personal Dashboard</div>
+            <div class="wi-desc">Track your XP, quiz scores, skill tree progress, and earned achievement badges</div>
+          </div>
+        </li>
+        <li class="wi-item">
+          <div class="wi-icon" style="background:#fff1f2">🎮</div>
+          <div>
+            <div class="wi-title">Gamified Learning</div>
+            <div class="wi-desc">Progressive lesson unlock, XP points, and badges keep you motivated to finish</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="team-inner">
+    <div class="section-label">Our Team</div>
+    <h2>Meet Group 1</h2>
+
+    <div style="margin-top: 40px;">
+      <!-- Leader -->
+      <div class="leader-card">
+        <div class="leader-avatar">👑</div>
+        <div class="leader-info">
+          <div class="leader-role">Group Leader</div>
+          <div class="leader-name">Matt Luyang</div>
+          <div class="leader-desc">
+            Led the overall planning, coordination, and direction of the CommLab project. Responsible for keeping the team aligned, managing deadlines, and ensuring every section of the project came together cohesively.
+          </div>
+          <div class="leader-badge">🏆 Group Leader</div>
+        </div>
+      </div>
+
+      <!-- Members -->
+      <div class="members-label">Members</div>
+      <div class="members-grid">
+
+        <div class="member-card">
+          <div class="member-avatar" style="background: linear-gradient(135deg,#2563eb,#60a5fa)">B</div>
+          <div class="member-name">Buenaflor</div>
+          <div class="member-role">Content Research</div>
+          <div class="member-role-tag" style="background:#eff6ff;color:#2563eb">📚 Researcher</div>
+        </div>
+
+        <div class="member-card">
+          <div class="member-avatar" style="background: linear-gradient(135deg,#0d9488,#34d399)">K</div>
+          <div class="member-name">Kwenny</div>
+          <div class="member-role">Tutorial Design</div>
+          <div class="member-role-tag" style="background:#f0fdfa;color:#0d9488">📖 Tutorial</div>
+        </div>
+
+        <div class="member-card">
+          <div class="member-avatar" style="background: linear-gradient(135deg,#7c3aed,#a78bfa)">S</div>
+          <div class="member-name">Silao</div>
+          <div class="member-role">Simulation Dev</div>
+          <div class="member-role-tag" style="background:#f5f3ff;color:#7c3aed">⚗️ Simulation</div>
+        </div>
+
+        <div class="member-card">
+          <div class="member-avatar" style="background: linear-gradient(135deg,#d97706,#fbbf24)">R</div>
+          <div class="member-name">Ramos</div>
+          <div class="member-role">Visual Design</div>
+          <div class="member-role-tag" style="background:#fffbeb;color:#d97706">🎨 Design</div>
+        </div>
+
+        <div class="member-card">
+          <div class="member-avatar" style="background: linear-gradient(135deg,#e11d48,#fb7185)">T</div>
+          <div class="member-name">Tirso</div>
+          <div class="member-role">Quiz & Assessment</div>
+          <div class="member-role-tag" style="background:#fff1f2;color:#e11d48">🧠 Assessment</div>
+        </div>
+
+        <div class="member-card">
+          <div class="member-avatar" style="background: linear-gradient(135deg,#16a34a,#4ade80)">S</div>
+          <div class="member-name">Sillar</div>
+          <div class="member-role">Glossary & Docs</div>
+          <div class="member-role-tag" style="background:#f0fdf4;color:#16a34a">📝 Docs</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="launch">
+  <div class="cta-inner">
+    <div class="cta-badge">🚀 Ready to Learn</div>
+    <h2>Start Your Learning Journey</h2>
+    <p>
+      CommLab is fully interactive — complete lessons, run simulations, earn XP, and test your knowledge on multimedia and effective communication. No login needed, just click and explore.
+    </p>
+    <a href="commlab-v2.html" class="cta-btn">
+      Open CommLab v2 <span class="arrow">→</span>
+    </a>
+    <div class="cta-note">Opens in the same tab · Works on mobile and desktop</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Group 1</strong> · Multimedia & Effective Communication Project · S.Y. 2025–2026<br>
+  <span style="margin-top:6px;display:block">Matt Luyang · Buenaflor · Kwenny · Silao · Ramos · Tirso · Sillar</span>
+</footer>
+
+</body>
+</html>
