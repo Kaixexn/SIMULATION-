@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CommLab v2 — Multimedia & Effective Communication</title>
+<title>CommLab v2 — Section G-11 Emerson</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 <style>
 /* ===================== THEME VARS ===================== */
@@ -522,9 +522,173 @@ input[type=range] { flex:1; accent-color:var(--accent2); }
   .hero { padding:40px 20px 30px; }
   .hero-cards { grid-template-columns:1fr 1fr; }
 }
+
+/* ===================== SPLASH SCREEN ===================== */
+#splash {
+  position:fixed; inset:0; z-index:9999;
+  background:#08080e;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  transition:opacity .7s ease, visibility .7s ease;
+}
+#splash.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+
+.splash-eyebrow {
+  font-family:'Space Mono',monospace;
+  font-size:10px; letter-spacing:.3em;
+  color:var(--accent); opacity:.7;
+  text-transform:uppercase; margin-bottom:20px;
+  animation:splashRise .6s .2s ease both;
+}
+.splash-logo {
+  font-family:'Syne',sans-serif; font-weight:800;
+  font-size:clamp(2rem,7vw,4.5rem); line-height:1;
+  text-align:center;
+  background:linear-gradient(135deg,#eeeef5 0%,#00e5ff 50%,#a78bfa 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation:splashRise .6s .35s ease both;
+}
+.splash-section {
+  font-family:'Space Mono',monospace;
+  font-size:clamp(.65rem,.9vw,.85rem);
+  letter-spacing:.25em; text-transform:uppercase;
+  color:var(--accent); margin-top:14px;
+  animation:splashRise .6s .5s ease both;
+}
+.splash-bar-wrap {
+  width:200px; height:2px; background:rgba(255,255,255,.08);
+  border-radius:4px; overflow:hidden; margin-top:40px;
+  animation:splashRise .4s .65s ease both;
+}
+.splash-bar-fill {
+  height:100%;
+  background:linear-gradient(90deg,var(--accent),var(--accent3));
+  border-radius:4px;
+  animation:splashLoad 1.6s .7s ease forwards;
+  width:0%;
+}
+@keyframes splashLoad { to { width:100%; } }
+@keyframes splashRise {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ===================== SECTION IDENTITY STRIP ===================== */
+.section-strip {
+  background:linear-gradient(90deg,
+    rgba(0,229,255,.06) 0%,
+    rgba(167,139,250,.08) 50%,
+    rgba(0,229,255,.06) 100%
+  );
+  border-bottom:1px solid rgba(0,229,255,.12);
+  padding:7px 20px;
+  display:flex; align-items:center; justify-content:center; gap:20px;
+  font-family:'Space Mono',monospace; font-size:10px;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--text2); flex-wrap:wrap;
+}
+.section-strip .strip-divider { opacity:.3; }
+.section-strip .strip-accent { color:var(--accent); font-weight:700; }
+
+/* ===================== HERO POLISH ===================== */
+.hero-grid-lines {
+  position:absolute; inset:0; pointer-events:none; overflow:hidden;
+  background-image:
+    linear-gradient(rgba(0,229,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,.025) 1px, transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+}
+[data-theme="light"] .hero-grid-lines {
+  background-image:
+    linear-gradient(rgba(0,100,200,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,100,200,.04) 1px, transparent 1px);
+}
+
+/* Staggered card entrance */
+.hero-card { opacity:0; transform:translateY(20px); }
+.hero-card.revealed {
+  animation:cardReveal .5s ease forwards;
+}
+.hero-card:nth-child(1).revealed { animation-delay:.0s; }
+.hero-card:nth-child(2).revealed { animation-delay:.08s; }
+.hero-card:nth-child(3).revealed { animation-delay:.16s; }
+.hero-card:nth-child(4).revealed { animation-delay:.24s; }
+@keyframes cardReveal {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ===================== ABOUT SECTION ===================== */
+.about-section {
+  max-width:900px; margin:0 auto 60px;
+  padding:0 20px;
+}
+.about-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  margin-top:24px;
+}
+@media(max-width:600px){ .about-grid { grid-template-columns:1fr; } }
+.about-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:14px; padding:22px; position:relative; overflow:hidden;
+}
+.about-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent3));
+}
+.about-card-icon { font-size:28px; margin-bottom:10px; }
+.about-card-title {
+  font-family:'Syne',sans-serif; font-weight:600;
+  font-size:15px; margin-bottom:6px;
+}
+.about-card-text { font-size:13px; color:var(--text2); line-height:1.65; }
+
+.section-label {
+  font-family:'Space Mono',monospace; font-size:10px;
+  letter-spacing:.15em; text-transform:uppercase;
+  color:var(--accent); margin-bottom:12px;
+}
+.about-title {
+  font-family:'Syne',sans-serif; font-weight:800; font-size:24px;
+  margin-bottom:10px;
+}
+.about-subtitle { color:var(--text2); font-size:14px; line-height:1.7; }
+
+/* team list */
+.team-list {
+  display:flex; flex-wrap:wrap; gap:8px; margin-top:12px;
+}
+.team-chip {
+  background:var(--surface2); border:1px solid var(--border);
+  border-radius:20px; padding:4px 14px;
+  font-size:12px; color:var(--text2);
+  font-family:'Space Mono',monospace;
+  transition:border-color .2s,color .2s;
+}
+.team-chip:hover { border-color:var(--accent); color:var(--accent); }
+
+/* ===================== SCROLL REVEAL ===================== */
+.reveal { opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ===================== IMPROVED PAGE TRANSITION ===================== */
+.page.active { animation: pageIn .4s cubic-bezier(.25,.46,.45,.94); }
+@keyframes pageIn {
+  from { opacity:0; transform:translateY(12px); }
+  to   { opacity:1; transform:translateY(0); }
+}
 </style>
 </head>
 <body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash">
+  <div class="splash-eyebrow">G-11 · Section Emerson · AY 2025–2026</div>
+  <div class="splash-logo">CommLab v2</div>
+  <div class="splash-section">✦ Multimedia & Effective Communication ✦</div>
+  <div class="splash-bar-wrap"><div class="splash-bar-fill"></div></div>
+</div>
 
 <!-- BROWSER CHROME -->
 <div class="browser-chrome">
@@ -534,7 +698,7 @@ input[type=range] { flex:1; accent-color:var(--accent2); }
       <div class="dot y"></div>
       <div class="dot g"></div>
     </div>
-    <div class="win-title">CommLab v2 — Interactive Learning Environment</div>
+    <div class="win-title">CommLab v2 — Section G-11 Emerson</div>
     <div class="chrome-actions">
       <button class="chrome-btn" onclick="toggleTheme()" title="Toggle theme" id="themeBtn">🌙</button>
       <button class="chrome-btn" onclick="showPage('dashboard')" title="Dashboard">📊</button>
@@ -571,13 +735,25 @@ input[type=range] { flex:1; accent-color:var(--accent2); }
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<div class="main">
+<!-- SECTION IDENTITY STRIP -->
+<div class="section-strip" style="margin-top:115px">
+  <span class="strip-accent">G-11 Emerson</span>
+  <span class="strip-divider">|</span>
+  <span>Multimedia & Effective Communication</span>
+  <span class="strip-divider">|</span>
+  <span>AY 2024–2025</span>
+  <span class="strip-divider">|</span>
+  <span>Senior High School</span>
+</div>
+
+<div class="main" style="margin-top:0">
 
 <!-- ===== HOME ===== -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-badge">📡 Social Science · High School · Interactive v2</div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-badge">✦ Section G-11 Emerson · Senior High School · Interactive v2</div>
     <h1>Multimedia &<br>Effective Communication</h1>
     <p>Learn, simulate, and master modern communication theory. Complete lessons, earn XP, and unlock new challenges.</p>
 
@@ -622,6 +798,45 @@ input[type=range] { flex:1; accent-color:var(--accent2); }
       </div>
     </div>
   </div>
+
+  <!-- ABOUT / CREDITS -->
+  <div class="about-section reveal">
+    <div class="section-label">✦ About This Project</div>
+    <div class="about-title">Built by Section G-11 Emerson</div>
+    <div class="about-subtitle">A fully interactive learning environment created as our final output for Multimedia &amp; Effective Communication — designed to teach, engage, and demonstrate what we've learned.</div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-icon">📖</div>
+        <div class="about-card-title">9 Structured Lessons</div>
+        <div class="about-card-text">From communication basics to visual design — each lesson has branching scenarios, quizzes, and XP rewards.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚗️</div>
+        <div class="about-card-title">5 Live Simulations</div>
+        <div class="about-card-text">Noise channel, broken telephone, budget allocator, cultural lens, and feedback loop — all interactive.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📚</div>
+        <div class="about-card-title">22-Term Glossary</div>
+        <div class="about-card-text">Searchable and filterable reference guide covering every key term from the course.</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🏆</div>
+        <div class="about-card-title">XP &amp; Achievement System</div>
+        <div class="about-card-text">Earn XP, unlock badges, track your skill tree and see your progress update live.</div>
+      </div>
+    </div>
+    <div style="margin-top:20px">
+      <div class="section-label">✦ Section</div>
+      <div class="team-list">
+        <span class="team-chip">G-11 Emerson</span>
+        <span class="team-chip">AY 2024–2025</span>
+        <span class="team-chip">Senior High School</span>
+        <span class="team-chip">Multimedia &amp; Effective Communication</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- ===== TUTORIAL ===== -->
@@ -857,6 +1072,14 @@ function showPage(id, tabEl) {
     if (t) t.classList.add('active');
   }
   document.getElementById('urlBar').textContent = 'commlab.edu / ' + id;
+  if (id === 'home') {
+    setTimeout(() => {
+      document.querySelectorAll('.hero-card').forEach(c => c.classList.add('revealed'));
+      if (typeof revealObserver !== 'undefined') {
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      }
+    }, 50);
+  }
   if (id === 'tutorial') { buildSidebar(); renderLesson(state.currentLesson); }
   if (id === 'simulation') { initSimulation(); }
   if (id === 'glossary') { renderGlossary(); }
@@ -925,6 +1148,7 @@ function generateSidebarHTML() {
 function switchLesson(id) {
   if (!isLessonUnlocked(id)) { showToast('🔒 Complete previous lessons first!'); return; }
   state.currentLesson = id;
+  quizAnswered = {};
   buildSidebar();
   renderLesson(id);
   closeDrawer();
@@ -1029,7 +1253,8 @@ function renderQuiz(lessonId, questions) {
   return html;
 }
 
-const quizAnswered = {};
+// Keyed by lessonId so switching lessons always gives a fresh quiz
+let quizAnswered = {};
 
 function checkQ(el, qi, oi, lid) {
   const key = `${lid}-${qi}`;
@@ -1039,10 +1264,12 @@ function checkQ(el, qi, oi, lid) {
   const questions = lessonData[lid]?.quiz;
   if (!questions) return;
   const q = questions[qi];
+
   const opts = el.closest('.quiz-opts');
-  opts.querySelectorAll('.quiz-opt').forEach((o,j) => {
+  opts.querySelectorAll('.quiz-opt').forEach((o, j) => {
     if (j === q.correct) o.classList.add('correct');
   });
+
   const fb = document.getElementById(`qfb-${lid}-${qi}`);
   if (oi === q.correct) {
     el.classList.add('correct');
@@ -1054,27 +1281,46 @@ function checkQ(el, qi, oi, lid) {
     fb.textContent = '❌ ' + q.exp;
     fb.className = 'qfb show bad';
   }
-  // Check if all answered
+
+  // Check if every question in this lesson has been answered
   const allQ = document.querySelectorAll(`.quiz-q[data-lid="${lid}"]`);
-  let allDone = true;
-  allQ.forEach((_,i) => { if (!quizAnswered[`${lid}-${i}`]) allDone = false; });
+  const allDone = Array.from(allQ).every((_, i) => quizAnswered[`${lid}-${i}`]);
+
   if (allDone) {
+    // Count correct answers by checking which option the user clicked (correct class on chosen option only)
     let score = 0;
-    allQ.forEach((_,i) => {
-      const q2 = questions[i];
-      const sel = document.querySelectorAll(`.quiz-q[data-lid="${lid}"]`)[i].querySelectorAll('.quiz-opt');
-      sel.forEach((o,j) => { if (o.classList.contains('correct') && j === q2.correct) score++; });
+    questions.forEach((q2, i) => {
+      if (quizAnswered[`${lid}-${i}`]) {
+        const qBlock = document.querySelector(`.quiz-q[data-lid="${lid}"][data-qi="${i}"]`);
+        if (qBlock) {
+          const chosen = qBlock.querySelector('.quiz-opt.correct, .quiz-opt.wrong');
+          if (chosen && chosen.classList.contains('correct')) score++;
+        }
+      }
     });
+
     state.quizScores[lid] = score;
     saveState();
+
     const banner = document.getElementById(`qscore-${lid}`);
-    const num = document.getElementById(`qscore-num-${lid}`);
-    const msg = document.getElementById(`qscore-msg-${lid}`);
-    banner.classList.add('show');
-    num.textContent = `${score}/${questions.length}`;
-    msg.textContent = score === questions.length ? '🎉 Perfect score! Excellent work!' : score >= questions.length*0.6 ? '👍 Good job! Review incorrect answers.' : '📖 Review the lesson and try again.';
-    num.style.color = score === questions.length ? 'var(--accent4)' : score >= questions.length*0.6 ? 'var(--accent5)' : 'var(--accent2)';
-    if (score >= questions.length*0.6) checkBadges();
+    const num    = document.getElementById(`qscore-num-${lid}`);
+    const msg    = document.getElementById(`qscore-msg-${lid}`);
+    if (banner && num && msg) {
+      banner.classList.add('show');
+      num.textContent = `${score}/${questions.length}`;
+      msg.textContent = score === questions.length
+        ? '🎉 Perfect score! Excellent work!'
+        : score >= questions.length * 0.6
+          ? '👍 Good job! Review the incorrect answers.'
+          : '📖 Review the lesson and try again.';
+      num.style.color = score === questions.length
+        ? 'var(--accent4)'
+        : score >= questions.length * 0.6
+          ? 'var(--accent5)'
+          : 'var(--accent2)';
+      if (score >= questions.length * 0.6) addXP(15, `Quiz complete — Lesson ${lid}`);
+      checkBadges();
+    }
   }
 }
 
@@ -1757,6 +2003,28 @@ updateXPDisplay();
 checkBadges();
 buildSidebar();
 renderLesson(state.currentLesson);
+
+// Splash screen — dismiss after bar finishes (≈2.3s)
+setTimeout(() => {
+  document.getElementById('splash').classList.add('hidden');
+}, 2300);
+
+// Hero cards staggered entrance
+setTimeout(() => {
+  document.querySelectorAll('.hero-card').forEach(card => card.classList.add('revealed'));
+}, 2500);
+
+// Scroll reveal observer
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>
